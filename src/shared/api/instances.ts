@@ -6,3 +6,7 @@ export const axiosInstance = axios.create({
     'content-type': 'application/json'
   }
 })
+
+const GESHINAPI = 'https://genshin.jmp.blue';
+
+export const getPosts = axios({ url: `${GESHINAPI}/artifacts`, method: 'GET', params: { offset: 0, limit: 10 } })
