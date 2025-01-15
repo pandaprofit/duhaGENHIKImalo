@@ -6,7 +6,6 @@ import {
   useOnEscKeydown,
   useScrollLock
 } from '@/shared/hooks'
-import { Button } from '@/ui'
 import classNames from 'classnames'
 
 import styles from './dialog.module.scss'
@@ -28,9 +27,9 @@ const Dialog: FC<DialogProps> = ({ className, onClose }) => {
       <div ref={rootRef} className={rootClassName}>
         <div ref={contentRef} className={styles.content}>
           <div className={styles.buttons}>
-            <Button>Action</Button>
+            {/* <Button>Action</Button>
 
-            <Button onClick={onClose}>Close</Button>
+            <Button onClick={onClose}>Close</Button> */}
           </div>
         </div>
       </div>

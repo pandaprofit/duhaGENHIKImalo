@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import { Wrapper } from '@/ui'
 import IconGithub from '@icons/github-mark.svg'
 
 import styles from './footer.module.scss'
@@ -17,12 +16,8 @@ const socialList: FooterSocialItemI[] = [
 const Footer: FC = () => {
   return (
     <footer className={styles.root}>
-      <Wrapper className={styles.wrapper}>
-        <a target="_blank">
-          VoidSharks.agency
-        </a>
-        <Social items={socialList} />
-      </Wrapper>
+      <a target="_blank">VoidSharks.agency</a>
+      <Social items={socialList} />
     </footer>
   )
 }

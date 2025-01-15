@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import { Wrapper } from '@/ui'
 import classNames from 'classnames'
 
 import config from '../../../package.json'
@@ -11,10 +10,7 @@ const Header: FC<HeaderProps> = ({ className }) => {
   const headerClassName = classNames(styles.root, className)
   return (
     <header className={headerClassName}>
-      <Wrapper className={styles.wrapper}>
-        <Logo />
-        <strong>v {config.version}</strong>
-      </Wrapper>
+      <Logo />
     </header>
   )
 }
