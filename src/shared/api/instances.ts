@@ -7,6 +7,10 @@ export const axiosInstance = axios.create({
   }
 })
 
-const GESHINAPI = 'https://genshin.jmp.blue';
+const GESHINAPI = 'https://genshin.jmp.blue'
 
-export const getPosts = axios({ url: `${GESHINAPI}/artifacts`, method: 'GET', params: { offset: 0, limit: 10 } })
+export const getPosts = axios({
+  url: `${GESHINAPI}/artifacts`,
+  method: 'GET',
+  params: { offset: 0, limit: 10 }
+})

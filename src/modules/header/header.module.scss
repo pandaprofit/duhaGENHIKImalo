@@ -16,10 +16,6 @@
     height: max(#{func.rem(2)}, 2px);
     background-color: var(--color-blue-border);
   }
-
-  strong {
-    font-weight: 500;
-  }
 }
 
 .wrapper {
