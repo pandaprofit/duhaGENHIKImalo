@@ -9,8 +9,21 @@ export const axiosInstance = axios.create({
 
 const GESHINAPI = 'https://genshin.jmp.blue'
 
-export const getPosts = axios({
-  url: `${GESHINAPI}/artifacts`,
-  method: 'GET',
-  params: { offset: 0, limit: 10 }
-})
+const cache = new Map();
+
+const getPosts = async (urlValue: string) => {
+  const cacheKey = GESHINAPI + urlValue;
+  if (cache.has(cacheKey)) {
+    return cache.get(cacheKey);
+  }
+
+  const response = await axios({
+    url: cacheKey,
+    method: 'GET'
+  });
+
+  cache.set(cacheKey, response.data);
+  return response.data;
+};
+
+export { getPosts };
