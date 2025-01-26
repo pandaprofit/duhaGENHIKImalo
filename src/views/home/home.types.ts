@@ -1,3 +1,3 @@
 export interface HomeProps {
-  className?: string
+  className?: string;
 }
