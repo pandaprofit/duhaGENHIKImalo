@@ -1,3 +1,4 @@
+'use client'
 import { FC, useEffect, useState } from 'react'
 import classNames from 'classnames'
 
@@ -15,7 +16,8 @@ const Characters: FC<CharactersProps> = ({
 
   const [url, setUrl] = useAtom(urlAtom)
 
-  const [posts, setPosts] = useState<Post[]>([]); // Типизируйте свои данные правильно
+  const [characters, setCharacters] = useState<Post[]>([]); // Типизируйте свои данные правильно
+
 
   const changeUrl = (post: string) => {
     const url = post; // Assuming post has a url property
@@ -26,7 +28,7 @@ const Characters: FC<CharactersProps> = ({
     const fetchPosts = async () => {
       try {
         const res = await getPosts(url);
-        setPosts(res); // Предполагаем, что ваши данные находятся в res
+        setCharacters(Array.isArray(res) ? res : [])
       } catch (err) {
         console.error(err);
       }
@@ -37,14 +39,14 @@ const Characters: FC<CharactersProps> = ({
 
   return (
     <div className={rootClassName}>
-      {posts.map((post, index) => (
+      {characters.map((character, index) => (
         <Link
-          onClick={() => changeUrl('/characters/' + post)}
-          href={'/characters/' + post}
+          onClick={() => changeUrl('/characters/' + character)}
+          href={`/characters/${character}`}
           key={index}
           className={styles.character}
         >
-          <div>{post}</div>
+          <div>{String(character)}</div>
         </Link>
       ))}
     </div>
