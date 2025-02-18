@@ -1,13 +1,12 @@
-'use client'
-
 import { ReactNode } from 'react'
 import { Footer } from '@modules/footer'
-import { Header } from '@modules/header'
+import Header from '@/modules/header/header'
+import type { Metadata } from 'next'
+import { Providers } from './providers'
 
 import '@styles/global.scss'
 
 import localFont from 'next/font/local'
-import { Provider } from '@service/provider'
 
 const font = localFont({
   src: [
@@ -34,6 +33,11 @@ const font = localFont({
   ]
 })
 
+export const metadata: Metadata = {
+  title: 'Genshin Helper',
+  description: 'Ваш помощник в мире Genshin Impact'
+}
+
 export default function RootLayout({
   children
 }: Readonly<{
@@ -42,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={font.className}>
-        <Provider>
+        <Providers>
           <div id="root">
             <Header />
             {children}
@@ -50,7 +54,7 @@ export default function RootLayout({
           </div>
 
           <div id="modal-root" />
-        </Provider>
+        </Providers>
       </body>
     </html>
   )

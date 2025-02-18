@@ -1,27 +1,109 @@
 @use '@styles/func';
 @use '@styles/mixins';
+@use '@styles/variables';
 
 .root {
-  position: relative;
+  position: fixed;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  max-width: 1400px;
   width: 100%;
-  background-color: var(--color-white-default);
+  background: rgba(28, 28, 45, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: flex-start;
+}
 
-  &::after {
-    z-index: 1;
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: max(#{func.rem(2)}, 2px);
-    background-color: var(--color-blue-border);
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  gap: 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover, &.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+
+    .iconWrapper {
+      background: var(--color-primary);
+      transform: scale(1.1);
+
+      img {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.active {
+    background: rgba(255, 255, 255, 0.15);
+
+    .iconWrapper {
+      transform: scale(1.1);
+    }
+  }
+
+  span {
+    font-size: 0.9rem;
+    font-weight: 500;
   }
 }
 
-.wrapper {
+.iconWrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-top: func.rem(32);
-  padding-bottom: func.rem(32);
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+
+  img {
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav {
+    overflow-x: auto;
+    padding: 0.5rem 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .navItem {
+    padding: 0.5rem 0.75rem;
+  }
 }
