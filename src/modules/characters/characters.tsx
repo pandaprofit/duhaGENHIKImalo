@@ -8,6 +8,7 @@ import { getPosts } from '@/shared/api/instances'
 import Link from 'next/link'
 import { useAtom } from 'jotai'
 import { urlAtom } from '@/shared/atoms/urlAtom'
+import { charactersAtom } from '@/shared/atoms/charactersAtom'
 
 const Characters: FC<CharactersProps> = ({
   className
@@ -15,27 +16,39 @@ const Characters: FC<CharactersProps> = ({
   const rootClassName = classNames(styles.root, className)
 
   const [url, setUrl] = useAtom(urlAtom)
-
-  const [characters, setCharacters] = useState<Post[]>([]); // Типизируйте свои данные правильно
-
+  const [characters, setCharacters] = useAtom(charactersAtom)
+  const [loading, setLoading] = useState(!characters.length)
 
   const changeUrl = (post: string) => {
-    const url = post; // Assuming post has a url property
-    setUrl(url);
+    const url = post
+    setUrl(url)
   }
 
   useEffect(() => {
     const fetchPosts = async () => {
+      if (characters.length) return // Если у нас уже есть данные, не делаем запрос
+
       try {
-        const res = await getPosts(url);
+        setLoading(true)
+        const res = await getPosts(url)
         setCharacters(Array.isArray(res) ? res : [])
       } catch (err) {
-        console.error(err);
+        console.error(err)
+      } finally {
+        setLoading(false)
       }
-    };
+    }
 
-    fetchPosts();
-  }, [url]);
+    fetchPosts()
+  }, [url, characters.length, setCharacters])
+
+  if (loading) {
+    return (
+      <div className={rootClassName}>
+        <div className={styles.loading}>Загрузка...</div>
+      </div>
+    )
+  }
 
   return (
     <div className={rootClassName}>
