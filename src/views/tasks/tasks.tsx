@@ -1,7 +1,7 @@
 'use client'
 import { FC } from 'react'
 import classNames from 'classnames'
-import Tasks from '@/modules/Tasks/Tasks'
+import Tasks from '@/modules/tasks/tasks'
 import { TaskProps } from './tasks.types'
 import styles from './tasks.module.scss'
 
