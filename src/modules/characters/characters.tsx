@@ -1,6 +1,7 @@
 'use client'
 import { FC, useEffect, useState } from 'react'
 import classNames from 'classnames'
+import Image from 'next/image'
 
 import styles from './characters.module.scss'
 import { CharactersProps, CharacterDetails } from './characters.types'
@@ -114,6 +115,7 @@ const Characters: FC<CharactersProps> = ({
           if (!details) return null
 
           const elementColor = getElementColor(details.vision)
+          const characterImagePath = `/images/characters/${character.toLowerCase()}.webp`
 
           return (
             <Link
@@ -126,6 +128,16 @@ const Characters: FC<CharactersProps> = ({
                 backgroundColor: `${elementColor}33` // 20% opacity
               }}
             >
+              <div className={styles.characterImage}>
+                <Image
+                  src={characterImagePath}
+                  alt={character}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  style={{ objectFit: 'cover' }}
+                  priority={index < 6}
+                />
+              </div>
               <div className={styles.content}>
                 <div className={styles.vision} style={{ backgroundColor: elementColor }}>
                   {details.vision}

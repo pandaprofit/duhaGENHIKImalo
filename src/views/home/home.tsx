@@ -3,7 +3,6 @@
 import { FC } from 'react'
 import classNames from 'classnames'
 import Link from 'next/link'
-import Image from 'next/image'
 
 import styles from './home.module.scss'
 import { HomeProps } from './home.types'
