@@ -12,20 +12,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  border-radius: 16px;
   transition: all 0.3s ease;
 
   &:hover {
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   }
 
   &.completed {
     opacity: 0.7;
+    background: rgba(255, 255, 255, 0.02);
 
     .taskText {
       text-decoration: line-through;
@@ -46,9 +48,10 @@
 }
 
 .taskText {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--color-text);
   margin-bottom: 0.5rem;
+  line-height: 1.4;
 }
 
 .taskMeta {
@@ -56,12 +59,22 @@
   gap: 1rem;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.6);
+  align-items: center;
 }
 
 .taskGoal {
-  padding: 0.2rem 0.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  padding: 0.3rem 0.8rem;
+  background: var(--color-primary);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: white;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.taskDate {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
 }
 
 .checkbox {
@@ -69,6 +82,7 @@
   width: 24px;
   height: 24px;
   cursor: pointer;
+  flex-shrink: 0;
 
   input {
     position: absolute;
@@ -84,7 +98,7 @@
     left: 0;
     height: 24px;
     width: 24px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 6px;
     transition: all 0.3s ease;
@@ -111,6 +125,11 @@
       display: block;
     }
   }
+
+  &:hover .checkmark {
+    border-color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.1);
+  }
 }
 
 .deleteButton {
@@ -122,24 +141,36 @@
   padding: 0.5rem;
   margin: -0.5rem;
   transition: all 0.3s ease;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     color: #ff4444;
+    background: rgba(255, 68, 68, 0.1);
   }
 }
 
 .emptyState {
   text-align: center;
-  padding: 3rem;
+  padding: 4rem 2rem;
   color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 16px;
+  border: 2px dashed rgba(255, 255, 255, 0.1);
 
   .emptyIcon {
     font-size: 3rem;
     margin-bottom: 1rem;
+    opacity: 0.8;
   }
 
   p {
     font-size: 1.1rem;
+    font-weight: 500;
   }
 }
 
@@ -156,5 +187,9 @@
     width: 100%;
     margin-left: 2.5rem;
     margin-top: 0.5rem;
+  }
+
+  .emptyState {
+    padding: 3rem 1rem;
   }
 }

@@ -1,6 +1,6 @@
 import { FC, useState, useCallback } from 'react'
 import { Task, TaskGoal } from './tasks.types'
-import { TaskList, AddTask, TaskFilters } from '@/components'
+import { TaskList, AddTask, TaskFilters, CacheTask } from '@/components'
 import styles from './tasks.module.scss'
 
 const Tasks: FC = () => {
@@ -31,6 +31,10 @@ const Tasks: FC = () => {
 		setTasks(prev => prev.filter(task => task.id !== id))
 	}, [])
 
+	const handleCacheLoad = useCallback((cachedTasks: Task[]) => {
+		setTasks(cachedTasks)
+	}, [])
+
 	const filteredTasks = tasks.filter(task => {
 		const matchesStatus =
 			filter === 'all' ||
@@ -45,6 +49,7 @@ const Tasks: FC = () => {
 	return (
 		<div className={styles.root}>
 			<h1>Список дел</h1>
+			<CacheTask tasks={tasks} onCacheLoad={handleCacheLoad} />
 			<AddTask onAdd={handleAddTask} />
 			<TaskFilters
 				currentFilter={filter}

@@ -1,7 +1,7 @@
 'use client'
 
 import { FC } from 'react'
-import { Tasks } from '@/modules/tasks'
+import { TasksView } from '@views/tasks'
 import { useAtom } from 'jotai'
 import { pageAtom } from '@/shared/atoms/pageAtom'
 import { useEffect } from 'react'
@@ -14,7 +14,7 @@ const TasksPage: FC = () => {
 		setCurrentPage('tasks')
 	}, [setCurrentPage])
 
-	return <Tasks />
+	return <TasksView />
 }
 
 export default TasksPage
